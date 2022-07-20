@@ -1,0 +1,10 @@
+query TechnologiesList {
+  technologies {
+    id
+    image {
+      width
+      height
+      url
+    }
+  }
+}
