@@ -22,7 +22,7 @@ const HomePage = ({ technologies, tools }: InferGetStaticPropsType<typeof getSta
       <Header />
       <Technologies technologies={technologies} />
       <AboutMe tools={tools} />
-      <div className="h-[2px] w-full border-2 border-gray-500 rounded-lg"></div>
+      <div className="h-[2px] w-[90%] mx-auto border-2 border-gray-500 rounded-lg"></div>
       <Projects />
     </div>
   );

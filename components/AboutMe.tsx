@@ -9,7 +9,7 @@ type Props = {
 
 export const AboutMe = ({ tools }: Props) => {
   return (
-    <section className="flex-col lg:flex-row flex justify-center items-center lg:justify-between my-20 space-y-5 lg:space-x-5 p-8">
+    <section className="flex-col lg:flex-row flex justify-center items-center lg:justify-between my-2 md:my-10 space-y-5 lg:space-x-5 p-8">
       <div className="lg:w-[800px] md:block hidden w-[550px] rounded-xl overflow-hidden">
         <Image
           src="https://media.graphassets.com/1z5LhwN3SpGK3TX3eGag"
@@ -22,17 +22,17 @@ export const AboutMe = ({ tools }: Props) => {
       </div>
       <div className="w-full">
         <article className="space-y-5 p-4">
-          <p className="text-3xl font-bold text-white">
+          <p className="md:text-3xl text-2xl font-bold text-white">
             I&apos;m <span className="text-sky-400">Mateusz Kozłowski</span>
           </p>
-          <p className="text-xl text-white">
+          <p className="text-lg text-white">
             I&apos;ve been coding for 2 years. I&apos;m self taught developer who loves to build full-stack applications
             and learning about new technologies.
           </p>
-          <p className="text-xl text-white">
+          <p className="text-lg text-white">
             When I&apos; not coding, I like to go to the gym, play games, read books and hang out with my friends.
           </p>
-          <p className="text-xl text-white">My favorite tools to work with:</p>
+          <p className="text-lg text-white">My favorite tools to work with:</p>
           <ul className="grid grid-cols-2">
             {tools.map((item) => (
               <Tool key={item.id} tool={item} />

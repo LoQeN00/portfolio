@@ -21,7 +21,7 @@ export const Header = (props: Props) => {
           Currently, I&apos;m looking for a job as a junior frontend developer.
         </p>
       </div>
-      <button className="px-5 py-3 rounded-3xl bg-gradient-to-r from-sky-400 to-cyan-300 text-white">
+      <button className="px-5 py-3 rounded-3xl bg-gradient-to-r from-sky-400 to-cyan-300 text-white md:text-2xl text-lg">
         Do You Want to Hire Me ?
       </button>
     </header>
