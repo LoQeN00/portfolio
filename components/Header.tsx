@@ -4,7 +4,7 @@ type Props = {};
 
 export const Header = (props: Props) => {
   return (
-    <div className="text-center my-20 space-y-12">
+    <header className="text-center my-20 space-y-12">
       <p className="bg-[#99a0af] text-transparent text-xl md:text-2xl bg-clip-text font-extrabold tracking-wide">
         HI, MY NAME IS
       </p>
@@ -24,6 +24,6 @@ export const Header = (props: Props) => {
       <button className="px-5 py-3 rounded-3xl bg-gradient-to-r from-sky-400 to-cyan-300 text-white">
         Do You Want to Hire Me ?
       </button>
-    </div>
+    </header>
   );
 };

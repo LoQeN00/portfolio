@@ -8,3 +8,10 @@ query TechnologiesList {
     }
   }
 }
+
+query ToolsList {
+  tools {
+    id
+    name
+  }
+}

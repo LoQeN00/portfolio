@@ -835,6 +835,8 @@ export type Mutation = {
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one technology */
   createTechnology?: Maybe<Technology>;
+  /** Create one tool */
+  createTool?: Maybe<Tool>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
   /**
@@ -851,12 +853,21 @@ export type Mutation = {
   deleteManyTechnologies: BatchPayload;
   /** Delete many Technology documents, return deleted documents */
   deleteManyTechnologiesConnection: TechnologyConnection;
+  /**
+   * Delete many Tool documents
+   * @deprecated Please use the new paginated many mutation (deleteManyToolsConnection)
+   */
+  deleteManyTools: BatchPayload;
+  /** Delete many Tool documents, return deleted documents */
+  deleteManyToolsConnection: ToolConnection;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one technology from _all_ existing stages. Returns deleted document. */
   deleteTechnology?: Maybe<Technology>;
+  /** Delete one tool from _all_ existing stages. Returns deleted document. */
+  deleteTool?: Maybe<Tool>;
   /** Publish one asset */
   publishAsset?: Maybe<Asset>;
   /**
@@ -873,16 +884,29 @@ export type Mutation = {
   publishManyTechnologies: BatchPayload;
   /** Publish many Technology documents */
   publishManyTechnologiesConnection: TechnologyConnection;
+  /**
+   * Publish many Tool documents
+   * @deprecated Please use the new paginated many mutation (publishManyToolsConnection)
+   */
+  publishManyTools: BatchPayload;
+  /** Publish many Tool documents */
+  publishManyToolsConnection: ToolConnection;
   /** Publish one technology */
   publishTechnology?: Maybe<Technology>;
+  /** Publish one tool */
+  publishTool?: Maybe<Tool>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one technology */
   schedulePublishTechnology?: Maybe<Technology>;
+  /** Schedule to publish one tool */
+  schedulePublishTool?: Maybe<Tool>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one technology from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishTechnology?: Maybe<Technology>;
+  /** Unpublish one tool from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishTool?: Maybe<Tool>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /**
@@ -899,8 +923,17 @@ export type Mutation = {
   unpublishManyTechnologies: BatchPayload;
   /** Find many Technology documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyTechnologiesConnection: TechnologyConnection;
+  /**
+   * Unpublish many Tool documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyToolsConnection)
+   */
+  unpublishManyTools: BatchPayload;
+  /** Find many Tool documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyToolsConnection: ToolConnection;
   /** Unpublish one technology from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishTechnology?: Maybe<Technology>;
+  /** Unpublish one tool from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishTool?: Maybe<Tool>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /**
@@ -917,14 +950,25 @@ export type Mutation = {
   updateManyTechnologies: BatchPayload;
   /** Update many Technology documents */
   updateManyTechnologiesConnection: TechnologyConnection;
+  /**
+   * Update many tools
+   * @deprecated Please use the new paginated many mutation (updateManyToolsConnection)
+   */
+  updateManyTools: BatchPayload;
+  /** Update many Tool documents */
+  updateManyToolsConnection: ToolConnection;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Update one technology */
   updateTechnology?: Maybe<Technology>;
+  /** Update one tool */
+  updateTool?: Maybe<Tool>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
   /** Upsert one technology */
   upsertTechnology?: Maybe<Technology>;
+  /** Upsert one tool */
+  upsertTool?: Maybe<Tool>;
 };
 
 
@@ -940,6 +984,11 @@ export type MutationCreateScheduledReleaseArgs = {
 
 export type MutationCreateTechnologyArgs = {
   data: TechnologyCreateInput;
+};
+
+
+export type MutationCreateToolArgs = {
+  data: ToolCreateInput;
 };
 
 
@@ -978,6 +1027,21 @@ export type MutationDeleteManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationDeleteManyToolsArgs = {
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
+export type MutationDeleteManyToolsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
@@ -990,6 +1054,11 @@ export type MutationDeleteScheduledReleaseArgs = {
 
 export type MutationDeleteTechnologyArgs = {
   where: TechnologyWhereUniqueInput;
+};
+
+
+export type MutationDeleteToolArgs = {
+  where: ToolWhereUniqueInput;
 };
 
 
@@ -1044,9 +1113,33 @@ export type MutationPublishManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationPublishManyToolsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
+export type MutationPublishManyToolsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
 export type MutationPublishTechnologyArgs = {
   to?: Array<Stage>;
   where: TechnologyWhereUniqueInput;
+};
+
+
+export type MutationPublishToolArgs = {
+  to?: Array<Stage>;
+  where: ToolWhereUniqueInput;
 };
 
 
@@ -1069,6 +1162,14 @@ export type MutationSchedulePublishTechnologyArgs = {
 };
 
 
+export type MutationSchedulePublishToolArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: ToolWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1084,6 +1185,14 @@ export type MutationScheduleUnpublishTechnologyArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   where: TechnologyWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishToolArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: ToolWhereUniqueInput;
 };
 
 
@@ -1135,9 +1244,33 @@ export type MutationUnpublishManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyToolsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyToolsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
 export type MutationUnpublishTechnologyArgs = {
   from?: Array<Stage>;
   where: TechnologyWhereUniqueInput;
+};
+
+
+export type MutationUnpublishToolArgs = {
+  from?: Array<Stage>;
+  where: ToolWhereUniqueInput;
 };
 
 
@@ -1181,6 +1314,23 @@ export type MutationUpdateManyTechnologiesConnectionArgs = {
 };
 
 
+export type MutationUpdateManyToolsArgs = {
+  data: ToolUpdateManyInput;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
+export type MutationUpdateManyToolsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: ToolUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -1193,6 +1343,12 @@ export type MutationUpdateTechnologyArgs = {
 };
 
 
+export type MutationUpdateToolArgs = {
+  data: ToolUpdateInput;
+  where: ToolWhereUniqueInput;
+};
+
+
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
@@ -1202,6 +1358,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertTechnologyArgs = {
   upsert: TechnologyUpsertInput;
   where: TechnologyWhereUniqueInput;
+};
+
+
+export type MutationUpsertToolArgs = {
+  upsert: ToolUpsertInput;
+  where: ToolWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -1266,6 +1428,14 @@ export type Query = {
   technology?: Maybe<Technology>;
   /** Retrieve document version */
   technologyVersion?: Maybe<DocumentVersion>;
+  /** Retrieve a single tool */
+  tool?: Maybe<Tool>;
+  /** Retrieve document version */
+  toolVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple tools */
+  tools: Array<Tool>;
+  /** Retrieve multiple tools using the Relay connection interface */
+  toolsConnection: ToolConnection;
   /** Retrieve a single user */
   user?: Maybe<User>;
   /** Retrieve multiple users */
@@ -1424,6 +1594,44 @@ export type QueryTechnologyVersionArgs = {
 };
 
 
+export type QueryToolArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ToolWhereUniqueInput;
+};
+
+
+export type QueryToolVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryToolsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ToolOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ToolWhereInput>;
+};
+
+
+export type QueryToolsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ToolOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ToolWhereInput>;
+};
+
+
 export type QueryUserArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
@@ -1563,7 +1771,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Technology;
+export type ScheduledOperationAffectedDocument = Asset | Technology | Tool;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -2856,6 +3064,406 @@ export type TechnologyWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+export type Tool = Node & {
+  __typename?: 'Tool';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Tool>;
+  /** List of Tool versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type ToolCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ToolDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type ToolHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ToolPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ToolScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ToolUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ToolConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ToolWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ToolConnection = {
+  __typename?: 'ToolConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ToolEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ToolCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ToolCreateManyInlineInput = {
+  /** Connect multiple existing Tool documents */
+  connect?: InputMaybe<Array<ToolWhereUniqueInput>>;
+  /** Create and connect multiple existing Tool documents */
+  create?: InputMaybe<Array<ToolCreateInput>>;
+};
+
+export type ToolCreateOneInlineInput = {
+  /** Connect one existing Tool document */
+  connect?: InputMaybe<ToolWhereUniqueInput>;
+  /** Create and connect one Tool document */
+  create?: InputMaybe<ToolCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ToolEdge = {
+  __typename?: 'ToolEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Tool;
+};
+
+/** Identifies documents */
+export type ToolManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ToolWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ToolWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ToolWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ToolOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type ToolUpdateInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ToolUpdateManyInlineInput = {
+  /** Connect multiple existing Tool documents */
+  connect?: InputMaybe<Array<ToolConnectInput>>;
+  /** Create and connect multiple Tool documents */
+  create?: InputMaybe<Array<ToolCreateInput>>;
+  /** Delete multiple Tool documents */
+  delete?: InputMaybe<Array<ToolWhereUniqueInput>>;
+  /** Disconnect multiple Tool documents */
+  disconnect?: InputMaybe<Array<ToolWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Tool documents */
+  set?: InputMaybe<Array<ToolWhereUniqueInput>>;
+  /** Update multiple Tool documents */
+  update?: InputMaybe<Array<ToolUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Tool documents */
+  upsert?: InputMaybe<Array<ToolUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ToolUpdateManyInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ToolUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ToolUpdateManyInput;
+  /** Document search */
+  where: ToolWhereInput;
+};
+
+export type ToolUpdateOneInlineInput = {
+  /** Connect existing Tool document */
+  connect?: InputMaybe<ToolWhereUniqueInput>;
+  /** Create and connect one Tool document */
+  create?: InputMaybe<ToolCreateInput>;
+  /** Delete currently connected Tool document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Tool document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Tool document */
+  update?: InputMaybe<ToolUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Tool document */
+  upsert?: InputMaybe<ToolUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ToolUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ToolUpdateInput;
+  /** Unique document search */
+  where: ToolWhereUniqueInput;
+};
+
+export type ToolUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ToolCreateInput;
+  /** Update document if it exists */
+  update: ToolUpdateInput;
+};
+
+export type ToolUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ToolUpsertInput;
+  /** Unique document search */
+  where: ToolWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ToolWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ToolWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ToolWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ToolWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References Tool record uniquely */
+export type ToolWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type UnpublishLocaleInput = {
   /** Locales to unpublish */
   locale: Locale;
@@ -3326,6 +3934,11 @@ export type TechnologiesListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TechnologiesListQuery = { __typename?: 'Query', technologies: Array<{ __typename?: 'Technology', id: string, image: { __typename?: 'Asset', width?: number | null, height?: number | null, url: string } }> };
 
+export type ToolsListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ToolsListQuery = { __typename?: 'Query', tools: Array<{ __typename?: 'Tool', id: string, name?: string | null }> };
+
 
 export const TechnologiesListDocument = gql`
     query TechnologiesList {
@@ -3366,3 +3979,38 @@ export function useTechnologiesListLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type TechnologiesListQueryHookResult = ReturnType<typeof useTechnologiesListQuery>;
 export type TechnologiesListLazyQueryHookResult = ReturnType<typeof useTechnologiesListLazyQuery>;
 export type TechnologiesListQueryResult = Apollo.QueryResult<TechnologiesListQuery, TechnologiesListQueryVariables>;
+export const ToolsListDocument = gql`
+    query ToolsList {
+  tools {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useToolsListQuery__
+ *
+ * To run a query within a React component, call `useToolsListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useToolsListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useToolsListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useToolsListQuery(baseOptions?: Apollo.QueryHookOptions<ToolsListQuery, ToolsListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ToolsListQuery, ToolsListQueryVariables>(ToolsListDocument, options);
+      }
+export function useToolsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ToolsListQuery, ToolsListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ToolsListQuery, ToolsListQueryVariables>(ToolsListDocument, options);
+        }
+export type ToolsListQueryHookResult = ReturnType<typeof useToolsListQuery>;
+export type ToolsListLazyQueryHookResult = ReturnType<typeof useToolsListLazyQuery>;
+export type ToolsListQueryResult = Apollo.QueryResult<ToolsListQuery, ToolsListQueryVariables>;
