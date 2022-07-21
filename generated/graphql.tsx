@@ -831,6 +831,8 @@ export type Mutation = {
    * @deprecated Asset mutations will be overhauled soon
    */
   createAsset?: Maybe<Asset>;
+  /** Create one project */
+  createProject?: Maybe<Project>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one technology */
@@ -847,6 +849,13 @@ export type Mutation = {
   /** Delete many Asset documents, return deleted documents */
   deleteManyAssetsConnection: AssetConnection;
   /**
+   * Delete many Project documents
+   * @deprecated Please use the new paginated many mutation (deleteManyProjectsConnection)
+   */
+  deleteManyProjects: BatchPayload;
+  /** Delete many Project documents, return deleted documents */
+  deleteManyProjectsConnection: ProjectConnection;
+  /**
    * Delete many Technology documents
    * @deprecated Please use the new paginated many mutation (deleteManyTechnologiesConnection)
    */
@@ -860,6 +869,8 @@ export type Mutation = {
   deleteManyTools: BatchPayload;
   /** Delete many Tool documents, return deleted documents */
   deleteManyToolsConnection: ToolConnection;
+  /** Delete one project from _all_ existing stages. Returns deleted document. */
+  deleteProject?: Maybe<Project>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -878,6 +889,13 @@ export type Mutation = {
   /** Publish many Asset documents */
   publishManyAssetsConnection: AssetConnection;
   /**
+   * Publish many Project documents
+   * @deprecated Please use the new paginated many mutation (publishManyProjectsConnection)
+   */
+  publishManyProjects: BatchPayload;
+  /** Publish many Project documents */
+  publishManyProjectsConnection: ProjectConnection;
+  /**
    * Publish many Technology documents
    * @deprecated Please use the new paginated many mutation (publishManyTechnologiesConnection)
    */
@@ -891,18 +909,24 @@ export type Mutation = {
   publishManyTools: BatchPayload;
   /** Publish many Tool documents */
   publishManyToolsConnection: ToolConnection;
+  /** Publish one project */
+  publishProject?: Maybe<Project>;
   /** Publish one technology */
   publishTechnology?: Maybe<Technology>;
   /** Publish one tool */
   publishTool?: Maybe<Tool>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
+  /** Schedule to publish one project */
+  schedulePublishProject?: Maybe<Project>;
   /** Schedule to publish one technology */
   schedulePublishTechnology?: Maybe<Technology>;
   /** Schedule to publish one tool */
   schedulePublishTool?: Maybe<Tool>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
+  /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishProject?: Maybe<Project>;
   /** Unpublish one technology from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishTechnology?: Maybe<Technology>;
   /** Unpublish one tool from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -917,6 +941,13 @@ export type Mutation = {
   /** Find many Asset documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyAssetsConnection: AssetConnection;
   /**
+   * Unpublish many Project documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyProjectsConnection)
+   */
+  unpublishManyProjects: BatchPayload;
+  /** Find many Project documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyProjectsConnection: ProjectConnection;
+  /**
    * Unpublish many Technology documents
    * @deprecated Please use the new paginated many mutation (unpublishManyTechnologiesConnection)
    */
@@ -930,6 +961,8 @@ export type Mutation = {
   unpublishManyTools: BatchPayload;
   /** Find many Tool documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyToolsConnection: ToolConnection;
+  /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishProject?: Maybe<Project>;
   /** Unpublish one technology from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishTechnology?: Maybe<Technology>;
   /** Unpublish one tool from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -944,6 +977,13 @@ export type Mutation = {
   /** Update many Asset documents */
   updateManyAssetsConnection: AssetConnection;
   /**
+   * Update many projects
+   * @deprecated Please use the new paginated many mutation (updateManyProjectsConnection)
+   */
+  updateManyProjects: BatchPayload;
+  /** Update many Project documents */
+  updateManyProjectsConnection: ProjectConnection;
+  /**
    * Update many technologies
    * @deprecated Please use the new paginated many mutation (updateManyTechnologiesConnection)
    */
@@ -957,6 +997,8 @@ export type Mutation = {
   updateManyTools: BatchPayload;
   /** Update many Tool documents */
   updateManyToolsConnection: ToolConnection;
+  /** Update one project */
+  updateProject?: Maybe<Project>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Update one technology */
@@ -965,6 +1007,8 @@ export type Mutation = {
   updateTool?: Maybe<Tool>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
+  /** Upsert one project */
+  upsertProject?: Maybe<Project>;
   /** Upsert one technology */
   upsertTechnology?: Maybe<Technology>;
   /** Upsert one tool */
@@ -974,6 +1018,11 @@ export type Mutation = {
 
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
+};
+
+
+export type MutationCreateProjectArgs = {
+  data: ProjectCreateInput;
 };
 
 
@@ -1012,6 +1061,21 @@ export type MutationDeleteManyAssetsConnectionArgs = {
 };
 
 
+export type MutationDeleteManyProjectsArgs = {
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
+export type MutationDeleteManyProjectsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
 export type MutationDeleteManyTechnologiesArgs = {
   where?: InputMaybe<TechnologyManyWhereInput>;
 };
@@ -1039,6 +1103,11 @@ export type MutationDeleteManyToolsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
+export type MutationDeleteProjectArgs = {
+  where: ProjectWhereUniqueInput;
 };
 
 
@@ -1095,6 +1164,24 @@ export type MutationPublishManyAssetsConnectionArgs = {
 };
 
 
+export type MutationPublishManyProjectsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
+export type MutationPublishManyProjectsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
 export type MutationPublishManyTechnologiesArgs = {
   to?: Array<Stage>;
   where?: InputMaybe<TechnologyManyWhereInput>;
@@ -1131,6 +1218,12 @@ export type MutationPublishManyToolsConnectionArgs = {
 };
 
 
+export type MutationPublishProjectArgs = {
+  to?: Array<Stage>;
+  where: ProjectWhereUniqueInput;
+};
+
+
 export type MutationPublishTechnologyArgs = {
   to?: Array<Stage>;
   where: TechnologyWhereUniqueInput;
@@ -1151,6 +1244,14 @@ export type MutationSchedulePublishAssetArgs = {
   to?: Array<Stage>;
   where: AssetWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type MutationSchedulePublishProjectArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  to?: Array<Stage>;
+  where: ProjectWhereUniqueInput;
 };
 
 
@@ -1177,6 +1278,14 @@ export type MutationScheduleUnpublishAssetArgs = {
   releaseId?: InputMaybe<Scalars['String']>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: AssetWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishProjectArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']>;
+  releaseId?: InputMaybe<Scalars['String']>;
+  where: ProjectWhereUniqueInput;
 };
 
 
@@ -1226,6 +1335,24 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyProjectsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyProjectsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyTechnologiesArgs = {
   from?: Array<Stage>;
   where?: InputMaybe<TechnologyManyWhereInput>;
@@ -1259,6 +1386,12 @@ export type MutationUnpublishManyToolsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
   where?: InputMaybe<ToolManyWhereInput>;
+};
+
+
+export type MutationUnpublishProjectArgs = {
+  from?: Array<Stage>;
+  where: ProjectWhereUniqueInput;
 };
 
 
@@ -1297,6 +1430,23 @@ export type MutationUpdateManyAssetsConnectionArgs = {
 };
 
 
+export type MutationUpdateManyProjectsArgs = {
+  data: ProjectUpdateManyInput;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
+export type MutationUpdateManyProjectsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']>;
+  before?: InputMaybe<Scalars['ID']>;
+  data: ProjectUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ProjectManyWhereInput>;
+};
+
+
 export type MutationUpdateManyTechnologiesArgs = {
   data: TechnologyUpdateManyInput;
   where?: InputMaybe<TechnologyManyWhereInput>;
@@ -1331,6 +1481,12 @@ export type MutationUpdateManyToolsConnectionArgs = {
 };
 
 
+export type MutationUpdateProjectArgs = {
+  data: ProjectUpdateInput;
+  where: ProjectWhereUniqueInput;
+};
+
+
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
@@ -1352,6 +1508,12 @@ export type MutationUpdateToolArgs = {
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
+};
+
+
+export type MutationUpsertProjectArgs = {
+  upsert: ProjectUpsertInput;
+  where: ProjectWhereUniqueInput;
 };
 
 
@@ -1389,6 +1551,520 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']>;
 };
 
+export type Project = Node & {
+  __typename?: 'Project';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description: Scalars['String'];
+  /** Get the document in other stages */
+  documentInStages: Array<Project>;
+  github?: Maybe<Scalars['String']>;
+  /** List of Project versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  title: Scalars['String'];
+  tools: Array<Scalars['String']>;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type ProjectCreatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ProjectDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type ProjectHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ProjectPublishedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ProjectScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ProjectUpdatedByArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ProjectConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ProjectWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ProjectConnection = {
+  __typename?: 'ProjectConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ProjectEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ProjectCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description: Scalars['String'];
+  github?: InputMaybe<Scalars['String']>;
+  title: Scalars['String'];
+  tools?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ProjectCreateManyInlineInput = {
+  /** Connect multiple existing Project documents */
+  connect?: InputMaybe<Array<ProjectWhereUniqueInput>>;
+  /** Create and connect multiple existing Project documents */
+  create?: InputMaybe<Array<ProjectCreateInput>>;
+};
+
+export type ProjectCreateOneInlineInput = {
+  /** Connect one existing Project document */
+  connect?: InputMaybe<ProjectWhereUniqueInput>;
+  /** Create and connect one Project document */
+  create?: InputMaybe<ProjectCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ProjectEdge = {
+  __typename?: 'ProjectEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Project;
+};
+
+/** Identifies documents */
+export type ProjectManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProjectWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProjectWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProjectWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  github?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  github_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  github_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  github_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  github_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  github_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  github_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  github_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  github_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  github_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  tools?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  tools_contains_all?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  tools_contains_none?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  tools_contains_some?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  tools_not?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ProjectOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  GithubAsc = 'github_ASC',
+  GithubDesc = 'github_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  ToolsAsc = 'tools_ASC',
+  ToolsDesc = 'tools_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type ProjectUpdateInput = {
+  description?: InputMaybe<Scalars['String']>;
+  github?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  tools?: InputMaybe<Array<Scalars['String']>>;
+};
+
+export type ProjectUpdateManyInlineInput = {
+  /** Connect multiple existing Project documents */
+  connect?: InputMaybe<Array<ProjectConnectInput>>;
+  /** Create and connect multiple Project documents */
+  create?: InputMaybe<Array<ProjectCreateInput>>;
+  /** Delete multiple Project documents */
+  delete?: InputMaybe<Array<ProjectWhereUniqueInput>>;
+  /** Disconnect multiple Project documents */
+  disconnect?: InputMaybe<Array<ProjectWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Project documents */
+  set?: InputMaybe<Array<ProjectWhereUniqueInput>>;
+  /** Update multiple Project documents */
+  update?: InputMaybe<Array<ProjectUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Project documents */
+  upsert?: InputMaybe<Array<ProjectUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ProjectUpdateManyInput = {
+  description?: InputMaybe<Scalars['String']>;
+  github?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  tools?: InputMaybe<Array<Scalars['String']>>;
+};
+
+export type ProjectUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ProjectUpdateManyInput;
+  /** Document search */
+  where: ProjectWhereInput;
+};
+
+export type ProjectUpdateOneInlineInput = {
+  /** Connect existing Project document */
+  connect?: InputMaybe<ProjectWhereUniqueInput>;
+  /** Create and connect one Project document */
+  create?: InputMaybe<ProjectCreateInput>;
+  /** Delete currently connected Project document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Disconnect currently connected Project document */
+  disconnect?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Project document */
+  update?: InputMaybe<ProjectUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Project document */
+  upsert?: InputMaybe<ProjectUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ProjectUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ProjectUpdateInput;
+  /** Unique document search */
+  where: ProjectWhereUniqueInput;
+};
+
+export type ProjectUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ProjectCreateInput;
+  /** Update document if it exists */
+  update: ProjectUpdateInput;
+};
+
+export type ProjectUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ProjectUpsertInput;
+  /** Unique document search */
+  where: ProjectWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ProjectWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProjectWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProjectWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProjectWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  github?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  github_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  github_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  github_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  github_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  github_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  github_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  github_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  github_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  github_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  tools?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  tools_contains_all?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  tools_contains_none?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  tools_contains_some?: InputMaybe<Array<Scalars['String']>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  tools_not?: InputMaybe<Array<Scalars['String']>>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References Project record uniquely */
+export type ProjectWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 export type PublishLocaleInput = {
   /** Locales to publish */
   locale: Locale;
@@ -1408,6 +2084,14 @@ export type Query = {
   assetsConnection: AssetConnection;
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
+  /** Retrieve a single project */
+  project?: Maybe<Project>;
+  /** Retrieve document version */
+  projectVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple projects */
+  projects: Array<Project>;
+  /** Retrieve multiple projects using the Relay connection interface */
+  projectsConnection: ProjectConnection;
   /** Retrieve a single scheduledOperation */
   scheduledOperation?: Maybe<ScheduledOperation>;
   /** Retrieve multiple scheduledOperations */
@@ -1487,6 +2171,44 @@ export type QueryNodeArgs = {
   id: Scalars['ID'];
   locales?: Array<Locale>;
   stage?: Stage;
+};
+
+
+export type QueryProjectArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ProjectWhereUniqueInput;
+};
+
+
+export type QueryProjectVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryProjectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ProjectOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ProjectWhereInput>;
+};
+
+
+export type QueryProjectsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ProjectOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: InputMaybe<ProjectWhereInput>;
 };
 
 
@@ -1771,7 +2493,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Technology | Tool;
+export type ScheduledOperationAffectedDocument = Asset | Project | Technology | Tool;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -3939,6 +4661,11 @@ export type ToolsListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ToolsListQuery = { __typename?: 'Query', tools: Array<{ __typename?: 'Tool', id: string, name?: string | null }> };
 
+export type ProjectsListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProjectsListQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string, description: string, github?: string | null, tools: Array<string> }> };
+
 
 export const TechnologiesListDocument = gql`
     query TechnologiesList {
@@ -4014,3 +4741,41 @@ export function useToolsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type ToolsListQueryHookResult = ReturnType<typeof useToolsListQuery>;
 export type ToolsListLazyQueryHookResult = ReturnType<typeof useToolsListLazyQuery>;
 export type ToolsListQueryResult = Apollo.QueryResult<ToolsListQuery, ToolsListQueryVariables>;
+export const ProjectsListDocument = gql`
+    query ProjectsList {
+  projects {
+    id
+    title
+    description
+    github
+    tools
+  }
+}
+    `;
+
+/**
+ * __useProjectsListQuery__
+ *
+ * To run a query within a React component, call `useProjectsListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProjectsListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProjectsListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useProjectsListQuery(baseOptions?: Apollo.QueryHookOptions<ProjectsListQuery, ProjectsListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProjectsListQuery, ProjectsListQueryVariables>(ProjectsListDocument, options);
+      }
+export function useProjectsListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProjectsListQuery, ProjectsListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProjectsListQuery, ProjectsListQueryVariables>(ProjectsListDocument, options);
+        }
+export type ProjectsListQueryHookResult = ReturnType<typeof useProjectsListQuery>;
+export type ProjectsListLazyQueryHookResult = ReturnType<typeof useProjectsListLazyQuery>;
+export type ProjectsListQueryResult = Apollo.QueryResult<ProjectsListQuery, ProjectsListQueryVariables>;

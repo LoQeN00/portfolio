@@ -33,9 +33,9 @@ export const AboutMe = ({ tools }: Props) => {
             When I&apos; not coding, I like to go to the gym, play games, read books and hang out with my friends.
           </p>
           <p className="text-lg text-white">My favorite tools to work with:</p>
-          <ul className="grid grid-cols-2">
+          <ul className="grid grid-cols-2 gap-2">
             {tools.map((item) => (
-              <Tool key={item.id} tool={item} />
+              <Tool key={item.id} tool={item.name!} />
             ))}
           </ul>
           <a

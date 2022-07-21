@@ -15,3 +15,13 @@ query ToolsList {
     name
   }
 }
+
+query ProjectsList {
+  projects {
+    id
+    title
+    description
+    github
+    tools
+  }
+}

@@ -2,12 +2,12 @@ import React from 'react';
 import { ToolsListQuery } from '../generated/graphql';
 
 type Props = {
-  tool: ToolsListQuery['tools'][0];
+  tool: string;
 };
 
 const Tool = ({ tool }: Props) => {
   return (
-    <li className="text-lg md:text-2xl text-white space-x-2">
+    <li className="text-md md:text-2xl text-white space-x-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6 inline-block text-sky-500"
@@ -20,7 +20,7 @@ const Tool = ({ tool }: Props) => {
           clipRule="evenodd"
         />
       </svg>
-      <span>{tool.name}</span>
+      <span>{tool}</span>
     </li>
   );
 };
