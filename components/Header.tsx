@@ -25,7 +25,7 @@ export const Header = (props: Props) => {
         href="https://www.linkedin.com/in/mateusz-koz%C5%82owski-22b392226/"
         target="_blank"
         rel="noreferrer"
-        className="px-5 py-3 rounded-3xl bg-gradient-to-r from-sky-400 to-cyan-300 text-white md:text-2xl text-lg inline-block"
+        className="px-5 py-3 rounded-3xl bg-sky-400 text-white md:text-2xl text-lg inline-block"
       >
         Do You Want to Hire Me ?
       </a>
