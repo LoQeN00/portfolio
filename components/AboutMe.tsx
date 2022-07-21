@@ -30,7 +30,7 @@ export const AboutMe = ({ tools }: Props) => {
             and learning about new technologies.
           </p>
           <p className="text-lg text-white">
-            When I&apos; not coding, I like to go to the gym, play games, read books and hang out with my friends.
+            When I&apos;m not coding, I like to go to the gym, play games, read books and hang out with my friends.
           </p>
           <p className="text-lg text-white">My favorite tools to work with:</p>
           <ul className="grid grid-cols-2 gap-2">
