@@ -8,7 +8,7 @@ type Props = {
 
 const Project = ({ project }: Props) => {
   return (
-    <div className="space-y-8 p-4">
+    <div className="space-y-8 p-5">
       <h2 className="text-2xl md:text-3xl text-sky-400 font-bold">{project.title}</h2>
       <p className="text-white text-lg md:text-xl">{project.description}</p>
       <ul className="grid grid-cols-2 w-[70%] gap-2">
