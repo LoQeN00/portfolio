@@ -25,14 +25,14 @@ export const AboutMe = ({ tools }: Props) => {
           <p className="md:text-3xl text-2xl font-bold text-white">
             I&apos;m <span className="text-sky-400">Mateusz Kozłowski</span>
           </p>
-          <p className="text-lg text-white">
+          <p className="text-md md:text-xl text-white">
             I&apos;ve been coding for 2 years. I&apos;m self taught developer who loves to build full-stack applications
             and learning about new technologies.
           </p>
-          <p className="text-lg text-white">
+          <p className=" text-md md:text-xl text-white">
             When I&apos;m not coding, I like to go to the gym, play games, read books and hang out with my friends.
           </p>
-          <p className="text-lg text-white">My favorite tools to work with:</p>
+          <p className=" text-md md:text-xl text-white">My favorite tools to work with:</p>
           <ul className="grid grid-cols-2 gap-2">
             {tools.map((item) => (
               <Tool key={item.id} tool={item.name!} />
