@@ -12,7 +12,7 @@ const Contact = (props: Props) => {
         href="https://www.linkedin.com/in/mateusz-koz%C5%82owski-22b392226/"
         target="_blank"
         rel="noreferrer"
-        className="px-5 py-3 rounded-3xl bg-gradient-to-r from-sky-400 to-cyan-300 text-white lg:text-2xl md:text-xl text-md inline-block"
+        className="px-5 py-3 rounded-3xl bg-gradient-to-r bg-sky-400 text-white lg:text-2xl md:text-xl text-md inline-block"
       >
         My LinkedIn
       </a>
