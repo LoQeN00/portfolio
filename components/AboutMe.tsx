@@ -9,15 +9,16 @@ type Props = {
 
 export const AboutMe = ({ tools }: Props) => {
   return (
-    <section className="flex-col lg:flex-row flex justify-center items-center lg:justify-between my-2 md:my-10 space-y-5 lg:space-x-5 p-8">
-      <div className="lg:w-[800px] md:block hidden w-[550px] rounded-xl overflow-hidden">
+    <section className="flex-col lg:flex-row flex justify-center items-center lg:justify-between my-2 md:my-10 space-y-8 lg:space-x-5 p-8">
+      <div className="lg:w-[800px] w-[500px] md:block hidden rounded-xl overflow-hidden order-1 my-8 lg:my-0 ml-8">
         <Image
-          src="https://media.graphassets.com/1z5LhwN3SpGK3TX3eGag"
+          src="/profilowe.jpg"
           layout="responsive"
           width={4}
-          height={3}
+          height={4}
           objectFit="cover"
           alt="me"
+          objectPosition="top"
         />
       </div>
       <div className="w-full">
