@@ -27,7 +27,7 @@ export const AboutMe = ({ tools }: Props) => {
             I&apos;m <span className="text-sky-400">Mateusz Kozłowski</span>
           </p>
           <p className="text-md md:text-xl text-white">
-            I&apos;ve been coding for 2 years. I&apos;m self taught developer who loves to build full-stack applications
+            I&apos;ve been coding for 4 years. I&apos;m self taught developer who loves to build full-stack applications
             and learning about new technologies.
           </p>
           <p className=" text-md md:text-xl text-white">
